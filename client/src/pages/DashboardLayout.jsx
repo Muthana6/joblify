@@ -5,6 +5,7 @@ import {createContext, useContext, useState} from "react";
 import PropTypes from 'prop-types';
 import customFetch from "../utils/customFetch.js";
 import {toast} from "react-toastify";
+import axios from "axios";
 
 
 export const loader = async ()=> {
