@@ -25,6 +25,8 @@ import {action as deleteJobAction} from "./pages/DeleteJob.jsx";
 import {loader as dashboardLoader} from "./pages/DashboardLayout.jsx";
 import {loader as allJobsLoader} from "./pages/AllJobs.jsx"
 import {loader as editJobLoader} from "./pages/EditJob.jsx"
+import {loader as adminLoader} from "./pages/Admin.jsx"
+
 
 
 const checkDefaultTheme = () => {
@@ -82,7 +84,8 @@ const router = createBrowserRouter([
                     ,
                     {
                         path:'admin',
-                        element: <Admin/>
+                        element: <Admin/>,
+                        loader: adminLoader
                     }
                     ,
                     {
