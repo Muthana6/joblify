@@ -7,6 +7,10 @@ export {default as FormRowSelect} from './FormRowSelect.jsx'
 export {default as JobsContainer} from './JobsContainer.jsx'
 export {default as SearchContainer} from './SearchContainer.jsx'
 export {default as SubmitBtn} from './SubmitBtn.jsx'
+export {default as ChartContainer} from './ChartsContainer.jsx'
+export {default as StatsContainer} from './StatsContainer.jsx'
+
+
 
 
 

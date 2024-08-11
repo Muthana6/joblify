@@ -1,6 +1,6 @@
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage.js";
 import {FormRow, Logo, SubmitBtn} from "../components/index.jsx";
-import {Form, Link, redirect, useNavigate, useNavigation} from "react-router-dom";
+import {Form, Link, redirect, useNavigate} from "react-router-dom";
 import customFetch from "../utils/customFetch.js";
 import {toast} from "react-toastify";
 
