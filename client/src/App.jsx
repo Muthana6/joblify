@@ -19,6 +19,8 @@ import {action as loginAction} from "./pages/Login.jsx";
 import {action as addJobAction} from "./pages/AddJob.jsx";
 import {action as editJobAction} from "./pages/EditJob.jsx";
 import {action as deleteJobAction} from "./pages/DeleteJob.jsx";
+import {action as profileAction} from "./pages/Profile.jsx";
+
 
 
 
@@ -79,7 +81,8 @@ const router = createBrowserRouter([
                     ,
                     {
                         path:'profile',
-                        element: <Profile/>
+                        element: <Profile/>,
+                        action: profileAction
                     }
                     ,
                     {

@@ -107,7 +107,7 @@ export const validateUserInput = withValidationErrors(
     [
         body('name').notEmpty().withMessage('name is required'),
         body('email').isEmail().withMessage('invalid email address')
-            .custom(async (email)=> {
+            .custom(async (email,{req})=> {
                 const user = await User.findOne({email});
                 if(user && user._id.toString() !== req.user.userId){
                     throw new BadRequestError('email already exists');

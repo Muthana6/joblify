@@ -10,14 +10,35 @@ import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import {validateTest} from "./middleware/validationMiddleware.js";
 import {authenticateUser} from "./middleware/authMiddleware.js";
 import cookieParser from "cookie-parser";
-
+import {dirname} from 'path'
+import {fileURLToPath} from 'url'
+import path from 'path'
+import cloudinary from 'cloudinary';
 const app = express();
 
+// CLOUD_NAME= duflmpgji
+// CLOUD_API_KEY= 541427412582894
+// CLOUD_API_SECRET=fcxBt84qqcq_sk_uTXqMlKN27-8
+// cloudinary.config({
+//     cloud_name: 'duflmpgji',
+//     api_key: 541427412582894,
+//     api_secret: 'fcxBt84qqcq_sk_uTXqMlKN27-8',
+// });
 dotenv.config();
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET,
+});
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+
 if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+app.use(express.static(path.resolve(__dirname, './public')))
 app.use(cookieParser());
 app.use(express.json());
 app.use('/api/v1/jobs',authenticateUser ,jobRouter)
