@@ -16,14 +16,7 @@ import path from 'path'
 import cloudinary from 'cloudinary';
 const app = express();
 
-// CLOUD_NAME= duflmpgji
-// CLOUD_API_KEY= 541427412582894
-// CLOUD_API_SECRET=fcxBt84qqcq_sk_uTXqMlKN27-8
-// cloudinary.config({
-//     cloud_name: 'duflmpgji',
-//     api_key: 541427412582894,
-//     api_secret: 'fcxBt84qqcq_sk_uTXqMlKN27-8',
-// });
+
 dotenv.config();
 
 cloudinary.config({
