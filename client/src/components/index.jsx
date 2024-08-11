@@ -6,6 +6,8 @@ export {default as Navbar} from './Navbar.jsx'
 export {default as FormRowSelect} from './FormRowSelect.jsx'
 export {default as JobsContainer} from './JobsContainer.jsx'
 export {default as SearchContainer} from './SearchContainer.jsx'
+export {default as SubmitBtn} from './SubmitBtn.jsx'
+
 
 
 
