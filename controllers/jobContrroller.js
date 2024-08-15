@@ -6,9 +6,47 @@ import day from "dayjs";
 
 
 export const getAllJobs = async (req, res) => {
-    const jobs = await Job.find({createdBy: req.user.userId})
+    // console.log(req.query)
+    const {search, jobStatus, jobType, sort} = req.query
+    const queryObject = {
+        createdBy: req.user.userId,
+    }
 
-    res.status(StatusCodes.OK).json({jobs});
+    if(jobStatus && jobStatus !=='all'){
+        queryObject.jobStatus =  jobStatus
+    }
+
+    if(jobType && jobType !=='all'){
+        queryObject.jobType =  jobType
+    }
+
+    if(search){
+        // this is a mongoose syntax to make the search better
+        queryObject.$or = [
+            {position: {$regex: search, $options:'i'}},
+            {company: {$regex: search, $options:'i'}}
+        ]}
+
+    const sortOptions = {
+        newest: '-createdAt',
+        oldest: 'createdAt',
+        'a-z': 'position',
+        'z-a':'-position'
+    }
+    const sortKey = sortOptions[sort] || sortOptions.newest
+    console.log(sortKey)
+
+    //setup pagination
+    const page = Number(req.query.page) || 1
+    const limit = Number(req.query.limit) || 4
+    const skip = (page - 1 ) * limit
+
+    const jobs = await Job.find(queryObject).sort(sortKey).skip(skip).limit(limit)
+    const totalJobs = await Job.countDocuments(queryObject)
+    const numOfPages = Math.ceil(totalJobs/limit)
+    // console.log(`here`)
+
+    res.status(StatusCodes.OK).json({totalJobs,numOfPages,currentPage:page,jobs});
 }
 
 export const createJob = async (req, res) => {
